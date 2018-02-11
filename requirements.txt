@@ -4,7 +4,6 @@ cffi==1.11.4
 chardet==2.3.0
 click==6.7
 cryptography==2.1.4
-cupshelpers==1.0
 dash==0.20.0
 dash-core-components==0.18.1
 dash-html-components==0.8.0
@@ -18,7 +17,6 @@ itsdangerous==0.24
 Jinja2==2.10
 jsonschema==2.6.0
 jupyter-core==4.4.0
-louis==3.0.0
 MarkupSafe==1.0
 nbformat==4.4.0
 paramiko==2.4.0
@@ -27,9 +25,7 @@ psycopg2==2.7.4
 pyasn1==0.4.2
 pycparser==2.18
 pycups==1.9.73
-pygobject==3.22.0
 PyNaCl==1.2.1
-pysmbc==1.0.15.6
 pytz==2018.3
 pyxdg==0.25
 requests==2.12.4
