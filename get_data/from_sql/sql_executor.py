@@ -1,4 +1,5 @@
-from get_data.from_sql.postgres_server import cur
+# Import the cursor from Postgres Client
+from get_data.from_sql.postgres_client import cur
 
 # This serves as a `void` function, where no data is returned
 def sql(query):

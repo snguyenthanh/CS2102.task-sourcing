@@ -10,7 +10,7 @@ from apps.login import signup
 
 from get_data.from_sql.queries.select import get_person_with_pwd
 from get_data.from_sql.queries.create import create_all_tables
-from get_data.from_sql.postgres_server import close_db
+from get_data.from_sql.postgres_client import close_db
 
 # The top layout of every page
 app.layout = html.Div([

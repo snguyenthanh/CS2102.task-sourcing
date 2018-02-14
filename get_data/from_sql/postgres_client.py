@@ -3,6 +3,8 @@ from sshtunnel import SSHTunnelForwarder
 
 from secret.confidential import *
 
+from app import logging
+
 ## PostgreSQL
 
 # Create an SSH tunnel
@@ -25,7 +27,7 @@ conn = psycopg2.connect(
 )
 conn.autocommit = True
 
-print("Connect to database successfully.")
+logging.info("Connect to database successfully.")
 
 # Get a database cursor
 cur = conn.cursor()
@@ -38,4 +40,4 @@ def close_db():
     # Stop the tunnel
     global tunnel
     tunnel.stop()
-    print("\nClosed connections.")
+    logging.info("\nClosed connections successfully.")

@@ -2,16 +2,16 @@ from get_data.from_sql.queries.create_queries import *
 from get_data.from_sql.sql_executor import sql
 
 def create_table_person():
-    sql(CREATE_PERSON_QUERY)
+    sql(CREATE_TABLE_PERSON_QUERY)
 
 def create_table_category():
-    sql(CREATE_CATEGORY_QUERY)
+    sql(CREATE_TABLE_CATEGORY_QUERY)
 
 def create_table_task():
-    sql(CREATE_TASK_QUERY)
+    sql(CREATE_TABLE_TASK_QUERY)
 
 def create_table_offer():
-    sql(CREATE_OFFER_QUERY)
+    sql(CREATE_TABLE_OFFER_QUERY)
 
 def create_all_tables():
     create_table_person()

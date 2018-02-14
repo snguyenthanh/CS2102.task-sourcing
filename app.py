@@ -1,5 +1,8 @@
 import dash
-from secret.hash import generate_new_token
+import logging
+import sys
+
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
 app = dash.Dash()
 server = app.server
