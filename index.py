@@ -8,8 +8,6 @@ from app import app
 from apps import app1, app2
 from apps.login import signup
 
-from secret.hash import encoded
-
 from get_data.from_sql.queries.select import get_person_with_pwd
 from get_data.from_sql.queries.create import create_all_tables
 from get_data.from_sql.postgres_server import close_db
@@ -71,7 +69,6 @@ login_layout =  html.Div([
         State('login-password', 'value')]
 )
 def login_user(username, password):
-    password = encoded(password)
     user = ""
 
     try:

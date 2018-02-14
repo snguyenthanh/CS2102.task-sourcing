@@ -1,6 +1,7 @@
 CREATE_PERSON_QUERY = r"""
 CREATE TABLE IF NOT EXISTS "person" (
-	"username"		VARCHAR(25) 	PRIMARY KEY,
+	"id"			SERIAL			PRIMARY KEY,
+	"username"		VARCHAR(25) 	UNIQUE NOT NULL,
 	"password" 		CHAR(100) 		NOT NULL,
 	"email" 		TEXT 			UNIQUE NOT NULL,
 	"created_dt" 	TIMESTAMP 		NOT NULL,
