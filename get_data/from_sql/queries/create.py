@@ -18,3 +18,6 @@ def create_all_tables():
     create_table_category()
     create_table_task()
     create_table_offer()
+
+def create_view_person():
+    sql(CREATE_VIEW_PERSON_QUERY)

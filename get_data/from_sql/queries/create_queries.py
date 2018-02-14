@@ -9,6 +9,13 @@ CREATE TABLE IF NOT EXISTS "person" (
 );
 """
 
+CREATE_VIEW_PERSON_QUERY = r"""
+CREATE OR REPLACE VIEW view_person (username, password) AS (
+	SELECT username, password
+	FROM person
+);
+"""
+
 CREATE_TABLE_CATEGORY_QUERY = r"""
 CREATE TABLE IF NOT EXISTS "category" (
 	"id"		SERIAL				PRIMARY KEY,
