@@ -4,6 +4,8 @@ import dash_core_components as dcc
 
 from app import app
 
+from apps.html_renderer import iframe
+
 content = r"""
 <style>
 .wrapper {
