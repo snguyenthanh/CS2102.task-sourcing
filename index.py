@@ -7,10 +7,11 @@ import flask
 from app import app
 from apps import app1, app2
 from apps.login import signup
+from apps.html_renderer import get_header, get_footer
 
 from get_data.from_sql.queries.select import get_person_with_pwd
 from get_data.from_sql.queries.create import create_all_tables
-from get_data.from_sql.queries.insert import insert_all_statuses
+from get_data.from_sql.queries.insert import insert_all_statuses, insert_all_categories
 from get_data.from_sql.postgres_client import close_db
 
 # The top layout of every page
@@ -19,7 +20,11 @@ app.layout = html.Div([
 
     html.Div(id='user-info',style={'display': 'none'}),
 
+    html.Div(id='page-header'),
+
     html.Div(id='page-content'),
+
+    get_footer(),
 
     # Default CSS
     html.Link(
@@ -31,11 +36,14 @@ app.layout = html.Div([
         rel='stylesheet',
             href='/static/brPBPO.css'
             ),
+    # Bootstrap
+    html.Link(
+        rel='stylesheet',
+            href='/static/bootstrap.min.css'
+            ),
 ])
 
 login_layout =  html.Div([
-
-        html.H2('Login'),
         html.Div([
             html.Label("Username:",style={'font-weight': 'bold', 'marginRight': 185}),
             dcc.Input(id='login-username', value='', type='text',
@@ -71,13 +79,23 @@ login_layout =  html.Div([
 )
 def login_user(username, password):
     user = ""
-
     try:
         user = get_person_with_pwd(username, password)[0]
     except:
         pass
-
     return user
+
+@app.callback(
+    Output('page-header', 'children'),
+    [Input('user-info', 'children')]
+)
+def show_header(user):
+    user = str(user)
+
+    if user == "None" or user == "":
+        return get_header()
+    else:
+        return get_header(True)
 
 ## Static CSS folder
 @app.server.route('/static/<path:path>')
@@ -93,13 +111,11 @@ def display_page(pathname, user):
     if pathname == '/signup':
         return signup.layout
 
-    if user == "None" or user == "":
+    if user == "None" or user == "" or pathname == '/login' or pathname == '/logout':
         return login_layout
-    else:
-        return app1.layout
 
     # If user is valid
-    if pathname == '/apps/app1':
+    if pathname == '/apps/app1' or pathname == r'/':
         return app1.layout
     elif pathname == '/apps/app2':
         return app2.layout
@@ -107,11 +123,12 @@ def display_page(pathname, user):
         return '404'
 
 def init_database():
-    # Create necessary tables
+    # Create
     create_all_tables()
 
-    # Insert the statuses for task
+    # Insert
     insert_all_statuses()
+    insert_all_categories()
 
 if __name__ == '__main__':
     init_database()
