@@ -10,6 +10,7 @@ from apps.login import signup
 
 from get_data.from_sql.queries.select import get_person_with_pwd
 from get_data.from_sql.queries.create import create_all_tables
+from get_data.from_sql.queries.insert import insert_all_statuses
 from get_data.from_sql.postgres_client import close_db
 
 # The top layout of every page
@@ -105,9 +106,15 @@ def display_page(pathname, user):
     else:
         return '404'
 
-if __name__ == '__main__':
-    ## Create necessary tables, in the database
+def init_database():
+    # Create necessary tables
     create_all_tables()
+
+    # Insert the statuses for task
+    insert_all_statuses()
+
+if __name__ == '__main__':
+    init_database()
 
     try:
         app.run_server(debug=True, port=5000)
