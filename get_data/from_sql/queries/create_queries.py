@@ -23,18 +23,24 @@ CREATE TABLE IF NOT EXISTS "category" (
 );
 """
 
+CREATE_TABLE_TASK_STATUS_QUERY = r"""
+CREATE TABLE IF NOT EXISTS "task_status" (
+	"status"		VARCHAR(8)		PRIMARY KEY
+);
+"""
+
 CREATE_TABLE_TASK_QUERY = r"""
 CREATE TABLE IF NOT EXISTS "task" (
 	"id" 			CHAR(6)			PRIMARY KEY,
 	"title" 		TEXT 			NOT NULL,
 	"description"	TEXT			NOT NULL,
-	"category_id"	INTEGER			NOT NULL 					REFERENCES "category" ("id") ON DELETE NO ACTION,
+	"category_id"	INTEGER			NOT NULL 					REFERENCES "category" ("id") ON UPDATE CASCADE,
 	"location"		TEXT			NOT NULL,
 	"requester"		VARCHAR(25)		NOT NULL					REFERENCES "person" ("username") ON DELETE CASCADE,
 	"start_dt"		TIMESTAMP		NOT NULL,
 	"end_dt"		TIMESTAMP		NOT NULL,
 	"price"			MONEY			NOT NULL,
-	"status_task"	VARCHAR(8)		DEFAULT 'open' NOT NULL,
+	"status_task"	VARCHAR(8)		DEFAULT 'open' NOT NULL		REFERENCES "task_status" ("status") ON UPDATE CASCADE,
 	"assignee"		VARCHAR(25)		DEFAULT NULL 				REFERENCES "person" ("username") ON DELETE SET NULL
 );
 """

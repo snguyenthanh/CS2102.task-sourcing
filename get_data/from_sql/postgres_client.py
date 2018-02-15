@@ -40,4 +40,4 @@ def close_db():
     # Stop the tunnel
     global tunnel
     tunnel.stop()
-    logging.info("\nClosed connections successfully.")
+    logging.info("Closed connections successfully.")
