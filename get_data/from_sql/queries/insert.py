@@ -5,6 +5,7 @@ from time import gmtime, strftime
 from secret.hash import encoded
 
 from constraints.task import ALLOWED_STATUSES
+from constraints.category import CATEGORIES
 
 def insert_new_person(username, password, email):
     password = encoded(password)
@@ -17,3 +18,7 @@ def insert_new_person(username, password, email):
 def insert_all_statuses():
     for status in ALLOWED_STATUSES:
         sql(INSERT_TASK_STATUS_QUERY.format(status))
+
+def insert_all_categories():
+    for category in CATEGORIES:
+        sql(INSERT_CATEGORY_QUERY.format(category))

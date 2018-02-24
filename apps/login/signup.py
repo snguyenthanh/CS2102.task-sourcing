@@ -90,7 +90,7 @@ def signup_form(msg):
 
     if "Your account has been created successfully." in str(msg):
         layout = html.Div([
-            html.A('Click here to redirect to main', href="/apps/app1")
+            html.A('Click here to redirect to main', href="/")
         ])
 
     return layout
