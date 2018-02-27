@@ -5,7 +5,7 @@ import os
 import flask
 
 from app import app
-from apps import app1, app2
+from apps import app1, app2, sample_app
 from apps.login import signup
 from apps.html_renderer import get_header, get_footer
 
@@ -111,14 +111,17 @@ def display_page(pathname, user):
     if pathname == '/signup':
         return signup.layout
 
-    if user == "None" or user == "" or pathname == '/login' or pathname == '/logout':
-        return login_layout
+    # Temporarily disable user validation
+    #if user == "None" or user == "" or pathname == '/login' or pathname == '/logout':
+    #    return login_layout
 
     # If user is valid
     if pathname == '/apps/app1' or pathname == r'/':
         return app1.layout
     elif pathname == '/apps/app2':
         return app2.layout
+    elif pathname == '/apps/sample':
+        return sample_app.layout
     else:
         return '404'
 
