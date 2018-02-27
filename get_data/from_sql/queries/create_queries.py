@@ -1,3 +1,5 @@
+## Table
+
 CREATE_TABLE_PERSON_QUERY = r"""
 CREATE TABLE IF NOT EXISTS "person" (
 	"id"			SERIAL			PRIMARY KEY,
@@ -9,17 +11,10 @@ CREATE TABLE IF NOT EXISTS "person" (
 );
 """
 
-CREATE_VIEW_PERSON_QUERY = r"""
-CREATE OR REPLACE VIEW view_person (username, password) AS (
-	SELECT username, password
-	FROM person
-);
-"""
-
 CREATE_TABLE_CATEGORY_QUERY = r"""
 CREATE TABLE IF NOT EXISTS "category" (
-	"id"		SERIAL				PRIMARY KEY,
-	"name"		TEXT				UNIQUE NOT NULL
+	"id"			SERIAL			PRIMARY KEY,
+	"name"			TEXT			UNIQUE NOT NULL
 );
 """
 
@@ -53,5 +48,14 @@ CREATE TABLE IF NOT EXISTS "offer" (
 	"assignee"		VARCHAR(25)		NOT NULL					REFERENCES "person" ("username") ON DELETE CASCADE,
 	"offered_dt"	TIMESTAMP		NOT NULL,
 	"status_offer"	VARCHAR(8)		DEFAULT 'pending' NOT NULL
+);
+"""
+
+## View
+
+CREATE_VIEW_PERSON_QUERY = r"""
+CREATE OR REPLACE VIEW view_person (username, password) AS (
+	SELECT username, password
+	FROM person
 );
 """
