@@ -7,7 +7,8 @@ import flask
 from app import app
 from apps import app1, app2, sample_app
 from apps.login import signup
-from apps.html_renderer import get_header, get_footer
+from apps.html_renderer import get_header, get_footer, iframe
+from get_data.from_html.samples import CONTENT1
 
 from get_data.from_sql.queries.select import get_person_with_pwd
 from get_data.from_sql.queries.create import create_all_tables
@@ -20,11 +21,11 @@ app.layout = html.Div([
 
     html.Div(id='user-info',style={'display': 'none'}),
 
-    html.Div(id='page-header'),
+    #html.Div(id='page-header'),
 
     html.Div(id='page-content'),
 
-    get_footer(),
+    #get_footer(),
 
     # Default CSS
     html.Link(
@@ -121,9 +122,9 @@ def display_page(pathname, user):
     elif pathname == '/apps/app2':
         return app2.layout
     elif pathname == '/apps/sample':
-        return sample_app.layout
+        return iframe(CONTENT1)
     else:
-        return '404'
+        return ''
 
 def init_database():
     # Create
